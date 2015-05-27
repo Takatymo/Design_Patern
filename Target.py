@@ -2,7 +2,7 @@
 
 class Print(object):
     def printWeak(self):
-        pass
+        raise NotImplementedError
 
     def printStrong(self):
-        pass
+        raise NotImplementedError
