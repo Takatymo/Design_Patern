@@ -1,5 +1,5 @@
-from Adaptee import Banner
-from Target import Print
+from Adapter.Adaptee import Banner
+from Adapter.Target import Print
 
 class PrintBannerSubClass(Banner, Print):
     def __init__(self, string):
