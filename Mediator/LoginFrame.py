@@ -1,18 +1,24 @@
 from tkinter import *
-from Mediator import Mediator
-import ColleagueButton
-import ColleagueTextField
-import ColleagueCheckbox
+from abc import ABCMeta, abstractmethod
+
+
+
 
 class ColleagueCheckbox(Checkbutton):
     def __init__(self, root, caption, state):
         Checkbutton.__init__(self, root, text=caption, variable=state)
+
     def set_mediator(self, mediator):
         self.mediator = mediator
+
     def set_colleague_enabled(self, enabled):
         self.configure(state=enabled)
+
     def item_state_changed(self, event):
         self.mediator.colleague_changed()
+
+
+
 
 class ColleagueButton(Button):
     def __init__(self, root, caption):
@@ -27,9 +33,11 @@ class ColleagueTextField(Text):
         Text.__init__(self, root, height=columns)
     def set_mediator(self, mediator):
         self.mediator = mediator
+
     def set_colleague_enabled(self, enabled):
         self.configure(state=enabled)
         self.configure(bg = 'white' if enabled=='normal' else 'lightGray')
+
     def text_value_changed(self, event):
         self.mediator.colleague_changed()
 
@@ -86,7 +94,6 @@ class LoginFrame(Frame):
 
     def _userpass_changed(self):
         if len(self.text_user.get("1.0",END))-1:
-            print(self.text_user.get("1.0",END))
             self.text_pass.set_colleague_enabled('normal')
             if len(self.text_pass.get("1.0",END))-1:
                 self.button_ok.set_colleague_enabled('normal')
